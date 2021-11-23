@@ -63,7 +63,7 @@ class Game{
 
                 index = index+1;
                 x = x+225;
-                y = displayHeight-allplayers[p].distance;
+                y = allplayers[p].positionY;
                 cars[index-1].x = x;
                 cars[index-1].y = y;
 
@@ -77,11 +77,21 @@ class Game{
                 }
             }
         }
-        if (keyIsDown(UP_ARROW) && player.index !== null) {
-                
-                player.distance += 10;
-                player.update();
-        }
+        if (keyIsDown(UP_ARROW)) {
+            this.playerMoving = true;
+            player.positionY -= 10;
+            player.update();
+          }
+    
+          if (keyIsDown(LEFT_ARROW)) {
+            player.positionX -= 5;
+            player.update();
+          }
+    
+          if (keyIsDown(RIGHT_ARROW)) {
+            player.positionX += 5;
+            player.update();
+          }
         if (player.distance>4230) {
             
             gameState = 2;
